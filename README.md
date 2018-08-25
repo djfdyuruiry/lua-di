@@ -44,7 +44,7 @@ end
 return App
 ```
 
-Configure all your dependencies in one function, then build your application:
+You can configure all your dependencies in one function, then build your application:
 
 ```lua
 local DependencyInjectionModule = require "luaDi.DependencyInjectionModule"
