@@ -20,10 +20,10 @@ local appModule = DependencyInjectionModule(function(config)
         print(...)
     end
   
-    -- define custom type (not a Lua module)
+    -- bind constrcutor parameter name to custom type (not a Lua module)
     config.bindings.types.appConfig = "AppConfig"
   
-    -- define a provider for the custom type 
+    -- define a provider for your custom type 
     -- (you can also provide instances for a Lua Package name in config.providers if you wish)
     config.providers.AppConfig = function()
         return
