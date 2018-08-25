@@ -62,7 +62,7 @@ return App
 You can configure all your dependencies in one function, then build your application:
 
 ```lua
-local DependencyInjectionModule = require "luaDi.DependencyInjectionModule"
+local DependencyInjectionModule = require "lua-di.DependencyInjectionModule"
 
 -- build and configure your app module
 local appModule = DependencyInjectionModule(function(config)
@@ -98,6 +98,47 @@ end)
 local app = appModule.getInstance("example.App")
 
 app:run()
+```
+
+---
+
+You can also enable the auto configure option to parse Lua modules using parameter names, following the pattern `module__full__path__type` for your constructor parameters; note this is case sensitive.
+
+Given this class:
+
+```lua
+-- example/AutoApp.lua
+local AutoApp = {}
+AutoApp.__index = AutoApp
+
+function AutoApp.new(example__Printer)
+    return setmetatable(
+    {
+        -- given there exists a class in 'example/Printer.lua'
+        printer = example__Printer
+    }, AutoApp)
+end
+
+function AutoApp.run(self)
+    self.printer:write("Auto Hello World")
+end
+
+return AutoApp
+
+```
+
+You can enable autoconfiguration like so:
+
+```lua
+local DependencyInjectionModule = require "lua-di.DependencyInjectionModule"
+
+local autoAppModule = DependencyInjectionModule(function(config)
+    config.enableAutoConfiguration()
+end)
+
+local autoApp = autoAppModule.getInstance("example.AutoApp")
+
+autoApp:run()
 ```
 
 ---
