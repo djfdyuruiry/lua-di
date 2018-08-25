@@ -1,12 +1,12 @@
-local AltPrinter = {}
-AltPrinter.__index = AltPrinter
+local AltPrinter = function()
+    local write = function(...)
+        print(...)
+    end
 
-function AltPrinter.new()
-    return setmetatable({}, AltPrinter)
-end
-
-function AltPrinter.write(self, ...)
-    print(...)
+    return 
+    {
+        write = write
+    }
 end
 
 return AltPrinter

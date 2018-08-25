@@ -1,12 +1,12 @@
-local printer = function()
-    local write = function(...)
-        print(...)
-    end
+local Printer = {}
+Printer.__index = Printer
 
-    return 
-    {
-        write = write
-    }
+function Printer.new()
+    return setmetatable({}, Printer)
 end
 
-return printer
+function Printer.write(self, ...)
+    print(...)
+end
+
+return Printer

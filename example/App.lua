@@ -1,18 +1,26 @@
-local App = function(appConfig, printer, altPrinter, writer, message)
-    return
+local App = {}
+App.__index = App
+
+function App.new(appConfig, printer, altPrinter, writer, message)
+    return setmetatable(
     {
-        run = function()
-            printer.write("Hello World")
-            altPrinter:write("Alternate Hello World")
-            writer(message)
+        appConfig = appConfig,
+        printer = printer,
+        altPrinter = altPrinter,
+        writer = writer,
+        message = message
+    }, App)
+end
 
-            print(appConfig.logPath)
+function App.run(self)
+    self.printer:write("Hello World")
+    self.writer(self.message)
 
-            appConfig.counter = appConfig.counter + 1
+    self.altPrinter.write(self.appConfig.logPath)
 
-            print(appConfig.counter)
-        end
-    }
+    print(self.appConfig.counter)
+
+    self.appConfig.counter = self.appConfig.counter + 1
 end
 
 return App
