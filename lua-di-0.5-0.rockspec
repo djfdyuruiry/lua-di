@@ -1,4 +1,4 @@
-package = "try-catch-finally"
+package = "lua-di"
 version = "0.5-0"
 source = {
     url = "git://github.com/djfdyuruiry/lua-di.git",
@@ -19,7 +19,7 @@ dependencies = {
 build = {
     type = "builtin",
     modules = {
-        ["luaDi.DependencyInjectionModule"] = "DependencyInjectionModule.lua"
+        ["luaDi.DependencyInjectionModule"] = "luaDi.DependencyInjectionModule.lua"
     },
     copy_directories = {}
 }
