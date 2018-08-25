@@ -1,8 +1,8 @@
 package = "lua-di"
-version = "0.5-0"
+version = "0.6-0"
 source = {
     url = "git://github.com/djfdyuruiry/lua-di.git",
-    tag = "v0.5"
+    tag = "v0.6"
 }
 description = {
         summary = "Pure Lua dependency injection library that supports constructor based injection",
@@ -19,7 +19,7 @@ dependencies = {
 build = {
     type = "builtin",
     modules = {
-        ["luaDi.DependencyInjectionModule"] = "luaDi/DependencyInjectionModule.lua"
+        ["lua-di.DependencyInjectionModule"] = "lua-di/DependencyInjectionModule.lua"
     },
     copy_directories = {}
 }

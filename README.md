@@ -146,4 +146,4 @@ declaration: `local instance = SomeClass(val)`
 
 ----
 
-See the example app in `main.lua` to get a full view of how to configure an application to use this Dependency injection library.
+See the example app in `example.lua` to get a full view of how to configure an application to use this Dependency injection library.

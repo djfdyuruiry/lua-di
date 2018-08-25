@@ -4,6 +4,7 @@ local DependencyInjectionModule = function(configure)
     local self = {}
 
     local initalised = false
+    local autoInjectEnabled = false
     local providers = {}
     local singletons = {}
     local bindings = 
@@ -51,6 +52,12 @@ local DependencyInjectionModule = function(configure)
             return self.getInstance(bindingType)
         elseif bindingValue ~= nil then
             return bindingValue
+        end
+
+        if autoInjectEnabled then
+            local moduleName = argumentName:gsub("__", ".")
+
+            return self.getInstance(moduleName)
         end
 
         return nil
@@ -122,7 +129,10 @@ local DependencyInjectionModule = function(configure)
                 {
                     bindings = bindings,
                     providers = providers,
-                    singletons = singletons
+                    singletons = singletons,
+                    enableAutoConfiguration = function()
+                        autoInjectEnabled = true
+                    end
                 }
             )
         end
