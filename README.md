@@ -10,7 +10,7 @@ Dependency injection library for Lua that supports constructor based injection.
 
 ## Install
 
-Get this library using [luarocks](https://github.com/luarocks/luarocks/wiki/Download): 
+Get this library using [luarocks](https://github.com/luarocks/luarocks/wiki/Download): http://luarocks.org/modules/djfdyuruiry/lua-di
 
 ----
 
