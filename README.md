@@ -37,6 +37,7 @@ local appModule = DependencyInjectionModule(function(config)
     config.singletons.AppConfig = true
 end)
 
+-- build an instance of the entry point class, injecting your dependencies
 local app = appModule.getInstance("example.App")
 
 app.run()
