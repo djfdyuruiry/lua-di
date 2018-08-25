@@ -19,7 +19,7 @@ dependencies = {
 build = {
     type = "builtin",
     modules = {
-        ["luaDi.DependencyInjectionModule"] = "luaDi.DependencyInjectionModule.lua"
+        ["luaDi.DependencyInjectionModule"] = "luaDi/DependencyInjectionModule.lua"
     },
     copy_directories = {}
 }
