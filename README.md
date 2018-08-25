@@ -1,6 +1,49 @@
 # lua-di
 Dependency injection library for Lua that supports constructor based injection.
 
+Given you have the following classes:
+
+```lua
+-- example/Printer.lua
+local Printer = {}
+Printer.__index = Printer
+
+function Printer.new()
+    return setmetatable({}, Printer)
+end
+
+function Printer.write(self, ...)
+    print(...)
+end
+
+return Printer
+```
+
+```lua
+-- example/App.lua
+local App = {}
+App.__index = App
+
+function App.new(appConfig, printer, writer, message)
+    return setmetatable(
+    {
+        appConfig = appConfig,
+        printer = printer,
+        writer = writer,
+        message = message
+    }, App)
+end
+
+function App.run(self)
+    self.printer:write("Hello World")
+    self.writer(self.message)
+
+    print(self.appConfig.logPath)
+end
+
+return App
+```
+
 Configure all your dependencies in one function, then build your application:
 
 ```lua
@@ -10,7 +53,6 @@ local DependencyInjectionModule = require "luaDi.DependencyInjectionModule"
 local appModule = DependencyInjectionModule(function(config)
     -- bind constructor parameter names to Lua modules
     config.bindings.types.printer = "example.Printer"
-    config.bindings.types.altPrinter = "example.AltPrinter"
 
     -- bind constructor parameter to constant value
     config.bindings.values.message = "Orders Recieved Captain"
@@ -40,7 +82,7 @@ end)
 -- build an instance of the entry point class, injecting your dependencies
 local app = appModule.getInstance("example.App")
 
-app.run()
+app:run()
 ```
 
 - Map constructor parameter names to Lua packages and constant values
@@ -70,7 +112,7 @@ return SomeClass
 declaration: `local instance = SomeClass.new(val)`
 
 *Functional Style*
-```
+```lua
 local SomeClass = function(val)
     local iAmPrivate = "secretStuff"
 
