@@ -1,6 +1,21 @@
 # lua-di
 Dependency injection library for Lua that supports constructor based injection.
 
+- Map constructor parameter names to Lua packages and constant values
+- Configure providers to dynamically build parameter types
+- Support for configuring types to be kept in singleton scope
+- Zero configuration/customisation of application required, exept for main module configuration itself.
+
+----
+
+## Install
+
+Get this library using [luarocks](https://github.com/luarocks/luarocks/wiki/Download): 
+
+----
+
+## Example
+
 Given you have the following classes:
 
 ```lua
@@ -85,11 +100,9 @@ local app = appModule.getInstance("example.App")
 app:run()
 ```
 
-- Map constructor parameter names to Lua packages and constant values
-- Configure providers to dynamically build parameter types
-- Support for configuring types to be kept in singleton scope
-- Zero configuration/customisation of application required, exept for main module configuration itself.
-- Supports both standard Lua classes and functional style classes:
+---
+
+Note this library supports both standard Lua classes and functional style classes:
 
 *Lua Classes*
 
