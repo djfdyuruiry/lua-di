@@ -15,7 +15,7 @@ local DependencyInjectionModule = function(configure)
 
     local getFunctionArguments = function(subjectFunction)
         local functionArguments = {}
-        local currentHook = debug.gethook()
+        local currentHook, mask, count = debug.gethook()
         
         local argumentInspectorHook = function(...)
             local caller = debug.getinfo(3)
@@ -29,7 +29,7 @@ local DependencyInjectionModule = function(configure)
         
                 if "(*temporary)" == name then
                     -- reset debug hook and error before function starts
-                    debug.sethook(currentHook)
+                    debug.sethook(currentHook, mask, count)
                     error('')
                     return
                 end
