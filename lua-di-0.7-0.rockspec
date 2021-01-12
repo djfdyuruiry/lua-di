@@ -1,8 +1,8 @@
 package = "lua-di"
-version = "0.6-0"
+version = "0.7-0"
 source = {
     url = "git://github.com/djfdyuruiry/lua-di.git",
-    tag = "v0.6"
+    tag = "v0.7"
 }
 description = {
         summary = "Pure Lua dependency injection library that supports constructor based injection",
