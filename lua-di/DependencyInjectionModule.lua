@@ -55,7 +55,7 @@ local DependencyInjectionModule = function(configure)
         end
 
         if autoInjectEnabled then
-            local moduleName = argumentName:gsub("__", ".")
+            local moduleName = argumentName:gsub("___", "-"):gsub("__", ".")
 
             return self.getInstance(moduleName)
         end
