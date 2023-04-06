@@ -170,6 +170,11 @@ local DependencyInjectionModule = function(configure)
             return singletons[moduleName].instance
         end
 
+        if instance then
+            -- provider instance
+            return instance
+        end
+
         local moduleHandle = dynamicRequire(moduleName)
         local moduleConstructor = getConstructor(moduleName, moduleHandle)
 
