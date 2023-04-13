@@ -55,7 +55,7 @@ local DependencyInjectionModule = function(configure)
         end
 
         if autoInjectEnabled then
-            local moduleName = argumentName:gsub("__", ".")
+            local moduleName = argumentName:gsub("___", "-"):gsub("__", ".")
 
             return self.getInstance(moduleName)
         end
@@ -168,6 +168,11 @@ local DependencyInjectionModule = function(configure)
 
             -- singleton instance
             return singletons[moduleName].instance
+        end
+
+        if instance then
+            -- provider instance
+            return instance
         end
 
         local moduleHandle = dynamicRequire(moduleName)
